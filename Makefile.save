@@ -1,0 +1,9 @@
+build: 
+	gcc -Wall -std=c99 ./src/*.c -lSDL2 -lSDL2_image -lSDL2_ttf -o game
+	sudo apt-get install libsdl2-image-dev
+run:
+	./game
+clean:
+	rm game
+	clear 
+
