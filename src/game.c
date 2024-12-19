@@ -44,6 +44,8 @@ SDL_Texture* background_texture = NULL;
 Mix_Chunk* back_sound = NULL;
 Mix_Chunk* background_music = NULL;
 Mix_Chunk* victory_sound = NULL;
+SDL_Texture* first = NULL;
+
 
 
 
@@ -127,7 +129,9 @@ bool init() {
         return false;
     }
     background_texture = IMG_LoadTexture(renderer, "./assets/image/lw.jpg");
-    if (background_texture == NULL) {
+    first = IMG_LoadTexture(renderer, "./assets/image/final.jpg");
+
+    if (background_texture == NULL || first== NULL ) {
         printf("Failed to load background image! SDL_image Error: %s\n", IMG_GetError());
         return false;
     }
@@ -507,7 +511,8 @@ void render_basket() {
 void render_menu() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-
+    SDL_Rect menu_background = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+    SDL_RenderCopy(renderer, first, NULL, &menu_background);
     SDL_Color white = {255, 255, 255, 255};
     render_text("START GAME", SCREEN_WIDTH / 2 - 70, 200, white);
     render_text("OPTIONS", SCREEN_WIDTH / 2 - 50, 300, white);
